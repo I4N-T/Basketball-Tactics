@@ -28,13 +28,17 @@ public class HoopScript : MonoBehaviour {
             pcScript.hasMoved = true;
 
             //remove ball possession from the shooter
-            GameManager.selectedAthlete.isPossessionChange = true;
-
+           
+            if (GameManager.selectedAthlete.name != "PointGuard")
+            {
+                GameManager.selectedAthlete.isPossessionChange = true;
+            }          
+            
             //reset positions
             foreach (Athlete athlete in gmScript.athleteList)
             {
                 athlete.startPositionSet();
-                if (athlete.name == "PointGuard")
+                if (athlete.name == "PointGuard" && GameManager.selectedAthlete.name != "PointGuard")
                 {
                     athlete.isPossessionChange = true;  //give ball to pointguard
                 }
